@@ -1,6 +1,9 @@
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { FaShoppingCart, FaUser } from 'react-icons/fa'
+<<<<<<< HEAD
 import { LinkContainer } from 'react-router-bootstrap'
+=======
+>>>>>>> f7a48eb580fc7b9fdfe58861b11b364de9c53c1f
 import logo from '../assets/logo.png'
 
 
