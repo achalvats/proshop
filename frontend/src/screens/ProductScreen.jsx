@@ -1,14 +1,27 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap'
 import Rating from '../components/Rating'
-import products from '../products'
+// import products from '../products' // not fetching the products from the hardcoded list but calling from backend using axios
+import axios from 'axios'
 
 const ProductScreen = () => {
+    const [product, setProduct] = useState({})
+
+
     const { id: productId } = useParams();
-    const product = products.find((p) => p._id === productId);
+    // const product = products.find((p) => p._id === productId);
     // console.log(productId)
     // console.log(product);
+
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const { data } = await axios.get(`/api/products/${productId}`)
+            setProduct(data)
+        }
+        fetchProduct()
+    }, [productId])
   return (
     // <>ProductScreen</>
     <>
