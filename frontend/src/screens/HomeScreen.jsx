@@ -1,24 +1,43 @@
 import { Row, Col } from 'react-bootstrap'
 // import products from '../products.js' // not fetching the products from the hardcoded list but calling from backend using axios
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
+// import axios from'axios' ?? not using this because of reduc toolkit
+
 import Product from '../components/Product.jsx'
-import axios from'axios'
+
+import { useGetProductsQuery } from '../slices/productsApiSlice.js'
 
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
+  const { data: products, isLoading, error} = useGetProductsQuery();
+
+
+
+
+
+  //This section was used with axios
+  // const [products, setProducts] = useState([]);
   
-  useEffect(() => {
-    const fetchProducts =async () => {
-      const { data } = await axios.get('/api/products');
-      setProducts(data);
-    }
-    fetchProducts();
-  }, [])
+  // useEffect(() => {
+  //   const fetchProducts =async () => {
+  //     const { data } = await axios.get('/api/products');
+  //     setProducts(data);
+  //   }
+  //   fetchProducts();
+  // }, [])
+ // end here, will be deleted in future
 
 
   return (
     <>
+      { isLoading ? (
+        <h2>Loading....</h2>
+      ) : error ? (
+        <div>
+          { error?.data?.message || error.error }
+        </div>
+      ) : (
+        <>
         <h1>Latest Products</h1>
         <Row>
             { products.map((prod) => (
@@ -27,6 +46,8 @@ const HomeScreen = () => {
                 </Col>
             ))}
         </Row>
+        </>
+      ) }
         
     </>
   )
