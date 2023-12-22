@@ -8,6 +8,8 @@ import { useParams, Link } from 'react-router-dom'
 // import axios from 'axios'
 
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice.js'
+import Loader from '../components/Loader.jsx'
+import Message from '../components/Message.jsx'
 
 const ProductScreen = () => {
 
@@ -35,11 +37,11 @@ const ProductScreen = () => {
     // <>ProductScreen</>
     <>
       { isLoading ? (
-        <h2>Loading....</h2>
+        <Loader/>
       ) : error ? (
-        <div>
+        <Message variant= 'danger'>
           { error?.data?.message || error.error }
-        </div>
+        </Message>
       ) : (
         <>
         <Link className='btn btn-light my-3' to='/'>
