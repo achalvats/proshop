@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : {cartItems: []}
 
 const addDecimals = (num) => {
-    return (math.round(num * 100) / 100).toFixed(2);
+    return (Math.round(num * 100) / 100).toFixed(2);
 }
 
 const cartSlice = createSlice({
@@ -41,7 +41,7 @@ const cartSlice = createSlice({
                 Number(state.taxPrice)
             ).toFixed(2);
 
-            localStorage.setItem('cart', JSon.stringify(state))
+            localStorage.setItem('cart', JSON.stringify(state))
         }
     }
 })
