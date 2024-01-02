@@ -8,9 +8,13 @@ import connectDB from "./config/db.js"
 
 const port = process.env.PORT || 5000
 
-connectDB()  // Call connectDB to establish the MongoDB connection
+connectDB();  // Call connectDB to establish the MongoDB connection
 
 const app = express();
+
+// request body parse middleware, used to send data from api POST data to middle ware, otherwise the routes can't read routes body encoded data
+app.use(express.json)
+app.use(express.urlencoded({ extended: true}));
 
 app.get('/', (req, res) => {
     res.send("API is running...")
