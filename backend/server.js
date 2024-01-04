@@ -1,4 +1,5 @@
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 dotenv.config()
 import express from "express"
 import productRoutes from './routes/productRoutes.js'
@@ -15,6 +16,9 @@ const app = express();
 // request body parse middleware, used to send data from api POST data to middle ware, otherwise the routes can't read routes body encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+
+//Cookie Parser middleware
+app.use(cookieParser())
 
 app.get('/', (req, res) => {
     res.send("API is running...")
