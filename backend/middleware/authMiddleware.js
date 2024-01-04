@@ -4,11 +4,11 @@ import User from "../models/userModel.js";
 
 
 //Protected route
-export const protect = asyncHandler(async (req, res, next) => {
+const protect = asyncHandler(async (req, res, next) => {
     let token;
 
     //Read the JWT from the cookie
-    token = req.cookie.jwt;
+    token = req.cookies.jwt;
 
     if (token) {
         try {
