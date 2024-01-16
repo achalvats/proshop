@@ -6,6 +6,7 @@ import FormContainer from "../components/FormContainer";
 import Loader from '../components/Loader'
 import { useLoginMutation } from '../slices/usersApiSlice'
 import { setCredentails } from '../slices/authSlice'
+import { toast } from 'react-toastify'
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
@@ -22,7 +23,7 @@ const LoginScreen = () => {
     <FormContainer>
       <h1>Sign In</h1>
 
-      <Form onSUbmit={submitHandler}>
+      <Form onSubmit={submitHandler}>
         <Form.Group controlId="email" className="my-3">
           <Form.Label>Email Address</Form.Label>
           <Form.Control 
